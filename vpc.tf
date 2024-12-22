@@ -1,25 +1,10 @@
-resource "yandex_vpc_network" "vpc" {
-  name = var.vpc_name
-}
+module "vpc_dev" {
+  source = "git::https://github.com/RedRatInTheHat/simple-vpc.git?ref=36f6f3c"
 
-resource "yandex_vpc_subnet" "subnet-1" {
-  name           = var.subnet_1_name
-  zone           = var.subnet_1_zone
-  network_id     = yandex_vpc_network.vpc.id
-  v4_cidr_blocks = var.subnet_1_cidr
-}
-
-resource "yandex_vpc_subnet" "subnet-2" {
-  name           = var.subnet_2_name
-  zone           = var.subnet_3_zone
-  network_id     = yandex_vpc_network.vpc.id
-  v4_cidr_blocks = var.subnet_2_cidr
-}
-
-
-resource "yandex_vpc_subnet" "subnet-3" {
-  name           = var.subnet_3_name
-  zone           = var.subnet_3_zone
-  network_id     = yandex_vpc_network.vpc.id
-  v4_cidr_blocks = var.subnet_3_cidr
+  vpc_name = "vpc"
+  vpc_subnets = [
+    { vpc_zone = "ru-central1-a", vpc_cidr = "192.168.10.0/24" },
+    { vpc_zone = "ru-central1-b", vpc_cidr = "192.168.11.0/24" },
+    { vpc_zone = "ru-central1-d", vpc_cidr = "192.168.12.0/24" },
+  ]
 }
