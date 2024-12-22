@@ -1,10 +1,10 @@
 module "master_vm" {
   source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=510d533"
 
-  instances_count = 3
+  instances_count = var.master_instances_count
 
-  instance_name = "master"
-  image_family  = "ubuntu-2004-lts"
+  instance_name = var.master_instance_name
+  image_family  = var.image_family
 
   subnets = [
     for subnet in module.vpc.subnet_info : {
@@ -12,15 +12,15 @@ module "master_vm" {
       "subnet_zone" : subnet.zone
     }
   ]
-  has_nat                   = true
-  allow_stopping_for_update = true
-  platform_id               = "standard-v3"
-  is_preemptible            = true
+  has_nat                   = var.has_nat
+  allow_stopping_for_update = var.is_allowed_stopping_for_update
+  platform_id               = var.platform_id
+  is_preemptible            = var.is_preemptible
 
   resources = {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
+    cores         = var.resources.cores
+    memory        = var.resources.memory
+    core_fraction = var.resources.core_fraction
   }
 
   metadata = {
@@ -31,10 +31,10 @@ module "master_vm" {
 module "worker_vm" {
   source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=510d533"
 
-  instances_count = 3
+  instances_count = var.worker_instances_count
 
-  instance_name = "worker"
-  image_family  = "ubuntu-2004-lts"
+  instance_name = var.worker_instance_name
+  image_family  = var.image_family
 
   subnets = [
     for subnet in module.vpc.subnet_info : {
@@ -42,15 +42,15 @@ module "worker_vm" {
       "subnet_zone" : subnet.zone
     }
   ]
-  has_nat                   = true
-  allow_stopping_for_update = true
-  platform_id               = "standard-v3"
-  is_preemptible            = true
+  has_nat                   = var.has_nat
+  allow_stopping_for_update = var.is_allowed_stopping_for_update
+  platform_id               = var.platform_id
+  is_preemptible            = var.is_preemptible
 
   resources = {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
+    cores         = var.resources.cores
+    memory        = var.resources.memory
+    core_fraction = var.resources.core_fraction
   }
 
   metadata = {
