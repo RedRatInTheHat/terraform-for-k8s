@@ -1,4 +1,4 @@
-module "vpc_dev" {
+module "vpc" {
   source = "git::https://github.com/RedRatInTheHat/simple-vpc.git?ref=36f6f3c"
 
   vpc_name = "vpc"

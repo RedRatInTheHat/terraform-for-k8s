@@ -19,3 +19,8 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+
+variable "vms_ssh_key" {
+  type        = string
+  description = "SSH key for cluster vms user"
+}
