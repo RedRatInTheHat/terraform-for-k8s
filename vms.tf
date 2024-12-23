@@ -1,5 +1,5 @@
 module "master_vm" {
-  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=510d533"
+  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=1a892e1"
 
   instances_count = var.master_instances_count
 
@@ -29,7 +29,7 @@ module "master_vm" {
 }
 
 module "worker_vm" {
-  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=510d533"
+  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=1a892e1"
 
   instances_count = var.worker_instances_count
 
