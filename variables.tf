@@ -115,3 +115,11 @@ variable "vpc_subnets" {
   ]
   description = "List of subnets for the VPC, including zone and CIDR."
 }
+
+# Hosts
+
+variable "inventory_path" {
+  type        = string
+  default     = "inventory.yaml"
+  description = "The path where inventory file will be created at"
+}

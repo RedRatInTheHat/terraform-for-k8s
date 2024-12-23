@@ -1,0 +1,36 @@
+all:
+  hosts:
+%{ for index, addr in master_ips ~}
+    master-${index}:
+      ansible_host: ${ addr.public_ip }
+      ip: ${ addr.private_ip }
+      access_ip: ${ addr.private_ip }
+%{ endfor ~}
+%{ for index, addr in worker_ips ~}
+    worker-${index}:
+      ansible_host: ${ addr.public_ip }
+      ip: ${ addr.private_ip }
+      access_ip: ${ addr.private_ip }
+%{ endfor ~}
+  children:
+    kube_control_plane:
+      hosts:
+%{ for index, addr in master_ips ~}
+        master-${index}:
+%{ endfor ~}
+    kube_node:
+      hosts:
+%{ for index, addr in worker_ips ~}
+        worker-${index}:
+%{ endfor ~}
+    etcd:
+      hosts:
+%{ for index, addr in master_ips ~}
+        master-${index}:
+%{ endfor ~}
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
