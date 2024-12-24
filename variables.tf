@@ -25,6 +25,11 @@ variable "vms_ssh_key" {
   description = "SSH key for cluster vms user"
 }
 
+variable "service_account_id" {
+  type = string
+  description = "The ID of the service account"
+}
+
 # Cluster machines
 
 variable "master_instances_count" {

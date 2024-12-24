@@ -29,33 +29,24 @@ module "master_vm" {
 }
 
 module "worker_vm" {
-  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=1a892e1"
+  source = "git::https://github.com/RedRatInTheHat/simple-vmg.git?ref=3863fb1"
 
+  group_name   = "workers"
   instances_count = var.worker_instances_count
 
-  instance_name = var.worker_instance_name
-  image_family  = var.image_family
+  service_account_id = var.service_account_id
+  network_id         = module.vpc.network_id
 
-  subnets = [
-    for subnet in module.vpc.subnet_info : {
-      "subnet_id" : subnet.id,
-      "subnet_zone" : subnet.zone
-    }
-  ]
-  has_nat                   = var.has_nat
-  allow_stopping_for_update = var.is_allowed_stopping_for_update
-  platform_id               = var.platform_id
-  is_preemptible            = var.is_preemptible
-
-  resources = {
-    cores         = var.resources.cores
-    memory        = var.resources.memory
-    core_fraction = var.resources.core_fraction
-  }
+  
+  has_nat      = true
+  subnet_ids   = module.vpc.subnet_ids
+  subnet_zones = [for subnet_info in module.vpc.subnet_info : subnet_info.zone]
 
   metadata = {
     user-data = data.template_file.cloudinit.rendered
   }
+
+  target_group_name = "workers-tg"
 }
 
 data "template_file" "cloudinit" {
