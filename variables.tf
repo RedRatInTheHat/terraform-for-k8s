@@ -52,7 +52,7 @@ variable "master_instance_name" {
 
 variable "worker_instance_name" {
   type        = string
-  default     = "worker"
+  default     = "workers"
   description = "Name of the instance."
 }
 
@@ -64,7 +64,7 @@ variable "image_family" {
 
 variable "has_nat" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether to enable NAT for the instance."
 }
 
@@ -98,6 +98,32 @@ variable "resources" {
     core_fraction = 20
   }
   description = "Resource configuration for the instance."
+}
+
+variable "workers_tg_name" {
+  type        = string
+  default     = "workers-tg"
+  description = "Name of the Target Group."
+}
+
+# Bastion
+
+variable "bastion_number" {
+  type        = string
+  default     = 1
+  description = "Number of bastion hosts (why would you need more than one? who knows)"
+}
+
+variable "bastion_name" {
+  type        = string
+  default     = "bastion"
+  description = "Bastion Host instance name"
+}
+
+variable "has_nat_for_bastion" {
+  type        = bool
+  default     = true
+  description = "Whether bastion host has public ip. But of course!"
 }
 
 # VPC
@@ -174,7 +200,7 @@ variable "listener_name" {
 }
 
 variable "healthcheck_host" {
-  type = string
-  default = "ingress.test.ru"
+  type        = string
+  default     = "ingress.test.ru"
   description = "'Host' header for healthcheck"
 }
