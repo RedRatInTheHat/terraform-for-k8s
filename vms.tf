@@ -29,7 +29,7 @@ module "master_vm" {
 }
 
 module "worker_vm" {
-  source = "git::https://github.com/RedRatInTheHat/simple-vmg.git?ref=3863fb1"
+  source = "git::https://github.com/RedRatInTheHat/simple-vmg.git?ref=3fef736"
 
   group_name   = "workers"
   instances_count = var.worker_instances_count

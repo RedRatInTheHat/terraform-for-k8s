@@ -26,7 +26,7 @@ variable "vms_ssh_key" {
 }
 
 variable "service_account_id" {
-  type = string
+  type        = string
   description = "The ID of the service account"
 }
 
@@ -127,4 +127,54 @@ variable "inventory_path" {
   type        = string
   default     = "inventory.yaml"
   description = "The path where inventory file will be created at"
+}
+
+# Load Balancer
+
+variable "alb_backend_group_name" {
+  type        = string
+  default     = "alb-bg"
+  description = "The name of the ALB Backend Group."
+}
+
+variable "http_backend_name" {
+  type        = string
+  default     = "backend-1"
+  description = "The name of the HTTP backend."
+}
+
+variable "alb_router_name" {
+  type        = string
+  default     = "alb-router"
+  description = "The name of the ALB HTTP Router."
+}
+
+variable "alb_virtual_host_name" {
+  type        = string
+  default     = "alb-host"
+  description = "The name of the ALB Virtual Host."
+}
+
+variable "route_name" {
+  type        = string
+  default     = "route-1"
+  description = "The name of the route within the Virtual Host."
+}
+
+variable "alb_load_balancer_name" {
+  type        = string
+  default     = "alb-1"
+  description = "The name of the ALB Load Balancer."
+}
+
+variable "listener_name" {
+  type        = string
+  default     = "alb-listener"
+  description = "The name of the listener for the Load Balancer."
+}
+
+variable "healthcheck_host" {
+  type = string
+  default = "ingress.test.ru"
+  description = "'Host' header for healthcheck"
 }
