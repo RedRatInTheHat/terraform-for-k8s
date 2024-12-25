@@ -7,7 +7,7 @@ module "master_vm" {
   image_family  = var.image_family
 
   subnets = [
-    for subnet in module.vpc.subnet_info : {
+    for subnet in module.vpc.private_subnet_info : {
       "subnet_id" : subnet.id,
       "subnet_zone" : subnet.zone
     }
@@ -39,8 +39,8 @@ module "worker_vm" {
 
   
   has_nat      = var.has_nat
-  subnet_ids   = module.vpc.subnet_ids
-  subnet_zones = [for subnet_info in module.vpc.subnet_info : subnet_info.zone]
+  subnet_ids   = module.vpc.private_subnet_ids
+  subnet_zones = [for subnet_info in module.vpc.private_subnet_info : subnet_info.zone]
 
   metadata = {
     user-data = data.template_file.cloudinit.rendered
@@ -58,7 +58,7 @@ module "bastion_vm" {
   image_family  = var.image_family
 
   subnets = [
-    for subnet in module.vpc.subnet_info : {
+    for subnet in module.vpc.public_subnet_info : {
       "subnet_id" : subnet.id,
       "subnet_zone" : subnet.zone
     }

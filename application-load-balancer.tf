@@ -12,5 +12,5 @@ module "ab" {
 
   target_group_ids = [module.worker_vm.target_group_id]
   network_id       = module.vpc.network_id
-  subnet_info      = module.vpc.subnet_info
+  subnet_info      = module.vpc.private_subnet_info
 }

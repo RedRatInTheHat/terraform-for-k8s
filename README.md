@@ -27,7 +27,7 @@
 | <a name="module_ab"></a> [ab](#module\_ab) | git::https://github.com/RedRatInTheHat/simple-ab.git | 5a42be1 |
 | <a name="module_bastion_vm"></a> [bastion\_vm](#module\_bastion\_vm) | git::https://github.com/RedRatInTheHat/simple-vms.git | 1a892e1 |
 | <a name="module_master_vm"></a> [master\_vm](#module\_master\_vm) | git::https://github.com/RedRatInTheHat/simple-vms.git | 1a892e1 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | git::https://github.com/RedRatInTheHat/simple-vpc.git | 36f6f3c |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | git::https://github.com/RedRatInTheHat/simple-vpc.git | bdf6240 |
 | <a name="module_worker_vm"></a> [worker\_vm](#module\_worker\_vm) | git::https://github.com/RedRatInTheHat/simple-vmg.git | 3fef736 |
 
 ## Resources
@@ -68,7 +68,8 @@
 | <a name="input_service_account_id"></a> [service\_account\_id](#input\_service\_account\_id) | The ID of the service account | `string` | n/a | yes |
 | <a name="input_vms_ssh_key"></a> [vms\_ssh\_key](#input\_vms\_ssh\_key) | SSH key for cluster vms user | `string` | n/a | yes |
 | <a name="input_vpc_name"></a> [vpc\_name](#input\_vpc\_name) | Name of the VPC. | `string` | `"vpc"` | no |
-| <a name="input_vpc_subnets"></a> [vpc\_subnets](#input\_vpc\_subnets) | List of subnets for the VPC, including zone and CIDR. | <pre>list(object({<br>    vpc_zone = string<br>    vpc_cidr = string<br>  }))</pre> | <pre>[<br>  {<br>    "vpc_cidr": "192.168.10.0/24",<br>    "vpc_zone": "ru-central1-a"<br>  },<br>  {<br>    "vpc_cidr": "192.168.11.0/24",<br>    "vpc_zone": "ru-central1-b"<br>  },<br>  {<br>    "vpc_cidr": "192.168.12.0/24",<br>    "vpc_zone": "ru-central1-d"<br>  }<br>]</pre> | no |
+| <a name="input_vpc_private_subnets"></a> [vpc\_private\_subnets](#input\_vpc\_private\_subnets) | List of public subnets for the VPC, including zone and CIDR. | <pre>list(object({<br>    vpc_zone = string<br>    vpc_cidr = string<br>  }))</pre> | <pre>[<br>  {<br>    "vpc_cidr": "192.168.10.0/24",<br>    "vpc_zone": "ru-central1-a"<br>  },<br>  {<br>    "vpc_cidr": "192.168.11.0/24",<br>    "vpc_zone": "ru-central1-b"<br>  },<br>  {<br>    "vpc_cidr": "192.168.12.0/24",<br>    "vpc_zone": "ru-central1-d"<br>  }<br>]</pre> | no |
+| <a name="input_vpc_public_subnets"></a> [vpc\_public\_subnets](#input\_vpc\_public\_subnets) | List of private subnets for the VPC, including zone and CIDR. | <pre>list(object({<br>    vpc_zone = string<br>    vpc_cidr = string<br>  }))</pre> | <pre>[<br>  {<br>    "vpc_cidr": "192.168.13.0/24",<br>    "vpc_zone": "ru-central1-d"<br>  }<br>]</pre> | no |
 | <a name="input_worker_instance_name"></a> [worker\_instance\_name](#input\_worker\_instance\_name) | Name of the instance. | `string` | `"workers"` | no |
 | <a name="input_worker_instances_count"></a> [worker\_instances\_count](#input\_worker\_instances\_count) | Number of instances to create. | `number` | `3` | no |
 | <a name="input_workers_tg_name"></a> [workers\_tg\_name](#input\_workers\_tg\_name) | Name of the Target Group. | `string` | `"workers-tg"` | no |

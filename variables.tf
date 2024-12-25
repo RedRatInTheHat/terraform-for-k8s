@@ -134,7 +134,7 @@ variable "vpc_name" {
   description = "Name of the VPC."
 }
 
-variable "vpc_subnets" {
+variable "vpc_private_subnets" {
   type = list(object({
     vpc_zone = string
     vpc_cidr = string
@@ -144,7 +144,18 @@ variable "vpc_subnets" {
     { vpc_zone = "ru-central1-b", vpc_cidr = "192.168.11.0/24" },
     { vpc_zone = "ru-central1-d", vpc_cidr = "192.168.12.0/24" },
   ]
-  description = "List of subnets for the VPC, including zone and CIDR."
+  description = "List of public subnets for the VPC, including zone and CIDR."
+}
+
+variable "vpc_public_subnets" {
+  type = list(object({
+    vpc_zone = string
+    vpc_cidr = string
+  }))
+  default = [
+    { vpc_zone = "ru-central1-d", vpc_cidr = "192.168.13.0/24" },
+  ]
+  description = "List of private subnets for the VPC, including zone and CIDR."
 }
 
 # Hosts
