@@ -1,4 +1,4 @@
-# Terraform для K8S
+# Terraform для K8S/test
 
 [main.tf](main.tf) – подключение провайдеров.<br/>
 [vpc.tf](vpc.tf) – созадние сети.<br/>
