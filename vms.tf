@@ -37,6 +37,11 @@ module "worker_vm" {
   service_account_id = var.service_account_id
   network_id         = module.vpc.network_id
 
+  resources = {
+    cores         = var.resources.cores
+    memory        = var.resources.memory
+    core_fraction = var.resources.core_fraction
+  }
   
   has_nat      = var.has_nat
   subnet_ids   = module.vpc.private_subnet_ids

@@ -93,8 +93,8 @@ variable "resources" {
     core_fraction = number
   })
   default = {
-    cores         = 2
-    memory        = 2
+    cores         = 4
+    memory        = 4
     core_fraction = 20
   }
   description = "Resource configuration for the instance."
@@ -212,6 +212,6 @@ variable "listener_name" {
 
 variable "healthcheck_host" {
   type        = string
-  default     = "ingress.test.ru"
+  default     = "static.redrat.diploma"
   description = "'Host' header for healthcheck"
 }
