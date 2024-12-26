@@ -89,7 +89,7 @@ module "atlantis_vm" {
 
   instances_count = 1
 
-  instance_name = "atlantis-test"
+  instance_name = "atlantis-test-1"
   image_family  = var.image_family
 
   subnets = [
