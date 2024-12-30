@@ -5,3 +5,5 @@ projects:
   - name: default
     dir: terraform-for-k8s
     workflow: default
+    autoplan:
+      enabled: true
