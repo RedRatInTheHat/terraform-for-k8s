@@ -34,13 +34,13 @@ variable "service_account_id" {
 
 variable "master_instances_count" {
   type        = number
-  default     = 3
+  default     = 1
   description = "Number of instances to create."
 }
 
 variable "worker_instances_count" {
   type        = number
-  default     = 3
+  default     = 2
   description = "Number of instances to create."
 }
 
