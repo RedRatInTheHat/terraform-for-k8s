@@ -84,36 +84,6 @@ module "bastion_vm" {
   }
 }
 
-module "atlantis_vm" {
-  source = "git::https://github.com/RedRatInTheHat/simple-vms.git?ref=1a892e1"
-
-  instances_count = 1
-
-  instance_name = "atlantis-test-2"
-  image_family  = var.image_family
-
-  subnets = [
-    for subnet in module.vpc.public_subnet_info : {
-      "subnet_id" : subnet.id,
-      "subnet_zone" : subnet.zone
-    }
-  ]
-  has_nat                   = var.has_nat_for_bastion
-  allow_stopping_for_update = var.is_allowed_stopping_for_update
-  platform_id               = var.platform_id
-  is_preemptible            = var.is_preemptible
-
-  resources = {
-    cores         = var.resources.cores
-    memory        = var.resources.memory
-    core_fraction = var.resources.core_fraction
-  }
-
-  metadata = {
-    user-data = data.template_file.cloudinit.rendered
-  }
-}
-
 data "template_file" "cloudinit" {
   template = file("./cloud-init.yml")
 
