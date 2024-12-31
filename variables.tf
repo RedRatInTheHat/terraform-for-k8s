@@ -82,7 +82,7 @@ variable "platform_id" {
 
 variable "is_preemptible" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether the instance is preemptible."
 }
 
