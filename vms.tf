@@ -31,7 +31,7 @@ module "master_vm" {
 module "worker_vm" {
   source = "git::https://github.com/RedRatInTheHat/simple-vmg.git?ref=3fef736"
 
-  group_name   = var.worker_instance_name
+  group_name      = var.worker_instance_name
   instances_count = var.worker_instances_count
 
   service_account_id = var.service_account_id
@@ -42,7 +42,7 @@ module "worker_vm" {
     memory        = var.resources.memory
     core_fraction = var.resources.core_fraction
   }
-  
+
   has_nat      = var.has_nat
   subnet_ids   = module.vpc.private_subnet_ids
   subnet_zones = [for subnet_info in module.vpc.private_subnet_info : subnet_info.zone]
